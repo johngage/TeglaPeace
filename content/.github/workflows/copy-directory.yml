@@ -1,0 +1,31 @@
+name: Copy Directory from TLPF-1 to TLPeace
+
+on:
+  workflow_dispatch:  # This allows manual triggering of the workflow
+
+jobs:
+  copy-directory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v2
+        with:
+          repository: johngage/tlpf-1
+          path: source-repo
+
+      - name: Checkout destination repository
+        uses: actions/checkout@v2
+        with:
+          repository: johngage/TLPeace
+          path: dest-repo
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # You'll need to set this up
+
+      - name: Copy directory
+        run: |
+          cp -R source-repo/content dest-repo/content-tlpf
+          cd dest-repo
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add content-tlpf
+          git commit -m "Copy content directory from tlpf-1 to TLPeace"
+          git push
