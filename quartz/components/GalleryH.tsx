@@ -3,10 +3,24 @@ import { classNames } from "../util/lang"
 import fs from "fs"
 import path from "path"
 
+// Define interface for caption structure
+interface Caption {
+    title?: string;
+    location?: string;
+    category?: string;
+    description?: string;
+    date?: string;
+    noshow?: boolean;
+  }
+  
+  interface Captions {
+    [key: string]: Caption;
+  }
+  
 const GalleryH: QuartzComponent = ({ fileData, displayClass }: QuartzComponentProps) => {
   const mediaPath = path.join(process.cwd(), "content", "assets", "media")
    // Read captions file
-   let captions = {}
+   let captions: Captions = {}
    try {
      const captionsFile = path.join(mediaPath, "captions.json")
      const captionsContent = fs.readFileSync(captionsFile, 'utf8')
