@@ -1,8 +1,10 @@
-import { PageLayout, SharedLayout } from "./quartz/cfg"
-import * as Component from "./quartz/components"
+import { PageLayout, SharedLayout  } from "./quartz/cfg"
 import { QuartzComponent, QuartzComponentProps } from "./quartz/components/types"
+import * as Component from "./quartz/components"
 import TopNavigation from "./quartz/components/TopNavigation"
 import Gallery from "./quartz/components/Gallery"
+import GalleryH from "./quartz/components/GalleryH"
+import GalleryV from "./quartz/components/GalleryV"
 
 
 // Shift order to change display: Shared, single page
@@ -33,12 +35,12 @@ export const sharedPageComponents: SharedLayout = {
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     Component.Breadcrumbs(),
+    GalleryH(),
     Component.ArticleTitle(),
     Component.ContentMeta(),
   
 //    Component.TagList(),
   ],
-  afterBody: [Gallery()],
 
   left: [
     Component.PageTitle(),
@@ -46,11 +48,13 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(), 
     Component.DesktopOnly(Component.Explorer()),
+//    Gallery(),
   ],
   right: [
     Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
+//    GalleryV(),
 
   ],
 }

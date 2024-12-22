@@ -1,13 +1,12 @@
-import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import  {QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { classNames } from "../util/lang"
 import fs from "fs"
 import path from "path"
 
 const Gallery: QuartzComponent = ({ fileData, displayClass }: QuartzComponentProps) => {
-  // Only render on gallery page
-  //if (fileData.slug !== "gallery/index") {
-  //  return null
- // }
+//  if (fileData.slug !== "gallery/index") {
+//    return null
+  
 
   // Path to media directory relative to where the script runs
   const mediaPath = path.join(process.cwd(), "content", "assets", "media")
